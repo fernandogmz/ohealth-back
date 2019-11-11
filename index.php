@@ -27,6 +27,45 @@
 				
 	print_r($db);
 	
+	print_r(doctores($db));
+	
+	public function doctores($db){
+			
+			$query="SELECT doctor.*, doctorxespecialidad.cod_especialidad, especialidad.nombre AS 'nombre_esp' FROM doctor
+				LEFT JOIN doctorxespecialidad ON doctorxespecialidad.cod_doctor=doctor.codigo
+				LEFT JOIN especialidad ON especialidad.codigo = doctorxespecialidad.cod_especialidad";
+
+			$doctores_keys=[];
+			$doctores=[];
+
+			$result = $db->query($query);
+			
+			if($result){
+				while($row = $result->fetch_assoc()){
+					$cod = $row['codigo'];
+					if(!array_key_exists($cod,$doctores)){ //Agregar
+						$doctores[$cod]=[
+							'codigo'=>$row['codigo'],
+							'nombre'=>$row['nombre'],
+							'apellidos'=>$row['apellidos'],
+							'telefono'=>$row['telefono'],
+							'correo'=>$row['correo'],
+							'jvpm'=>$row['jvpm'],
+							'especialidades'=>($row['cod_especialidad']?[$row['nombre_esp']]:array())
+						];
+					}else{
+						
+						if($row['cod_especialidad']){
+							array_push($doctores[$cod]['especialidades'],$row['nombre_esp']);
+						}
+					}
+					
+				}
+			}
+
+			return array_values($doctores);
+		}
+	
 	die();
 	require_once('connection.php');
 	
