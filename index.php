@@ -9,7 +9,8 @@
 </body>
 </html>
 <?php
-	phpinfo();
+	private $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+	print_r($cleardb_url);
 	die();
 
 	require_once('connection.php');
