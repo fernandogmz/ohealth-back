@@ -9,9 +9,10 @@
 </body>
 </html>
 <?php
+	phpinfo();
+	die();
 
 	require_once('connection.php');
-	phpinfo();
 	
 	$db = new MODEL();
 	$db->connect();
