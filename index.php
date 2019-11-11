@@ -16,6 +16,7 @@
 	$db->connect();
 
 	if(!$db->isActive()) die('Conexión fallida');
+	print_r($db);
 
 	print_r(json_encode($db->doctores()));
 
