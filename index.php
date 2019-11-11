@@ -19,6 +19,14 @@
 	print_r($cleardb_password);
 	print_r($cleardb_db);
 	
+	$db = new mysqli(
+				$cleardb_server,
+				$cleardb_username,
+				$cleardb_password,
+				$cleardb_db) or false;
+				
+	print_r($db);
+	
 	die();
 	require_once('connection.php');
 	
