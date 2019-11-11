@@ -27,7 +27,7 @@
 				
 	print_r($db);
 	
-	print_r(doctores($db));
+	print_r(json_encode(doctores($db)));
 	
 	function doctores($db){
 			
