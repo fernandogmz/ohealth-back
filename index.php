@@ -29,7 +29,7 @@
 	
 	print_r(doctores($db));
 	
-	public function doctores($db){
+	function doctores($db){
 			
 			$query="SELECT doctor.*, doctorxespecialidad.cod_especialidad, especialidad.nombre AS 'nombre_esp' FROM doctor
 				LEFT JOIN doctorxespecialidad ON doctorxespecialidad.cod_doctor=doctor.codigo
