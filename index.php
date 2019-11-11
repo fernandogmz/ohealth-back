@@ -9,9 +9,6 @@
 </body>
 </html>
 <?php
-	private $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-	print_r($cleardb_url);
-	die();
 
 	require_once('connection.php');
 	
@@ -19,7 +16,6 @@
 	$db->connect();
 
 	if(!$db->isActive()) die('Conexión fallida');
-	print_r($db);
 
 	print_r(json_encode($db->doctores()));
 

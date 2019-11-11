@@ -3,37 +3,12 @@
 	class MODEL{
 
 	//Get Heroku ClearDB connection information
-		private $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-		private $cleardb_server   = $cleardb_url["host"];
-		private $cleardb_username = $cleardb_url["user"];
-		private $cleardb_password = $cleardb_url["pass"];
-		private $cleardb_db       = substr($cleardb_url["path"],1);
+		//private $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+		private $cleardb_server   = getenv("DB_HOST");
+		private $cleardb_username = getenv("DB_USERNAME");
+		private $cleardb_password = getenv("DB_PASSWORD");
+		private $cleardb_db       = getenv("DB_NAME");
 
-
-		private $active_group = 'default';
-		private $query_builder = TRUE;
-
-		public $db['default'] = array(
-			'dsn'    => '',
-			'hostname' => $cleardb_server,
-			'username' => $cleardb_username,
-			'password' => $cleardb_password,
-			'database' => $cleardb_db,
-			'dbdriver' => 'mysqli',
-			'dbprefix' => '',
-			'pconnect' => FALSE,
-			'db_debug' => (ENVIRONMENT !== 'production'),
-			'cache_on' => FALSE,
-			'cachedir' => '',
-			'char_set' => 'utf8',
-			'dbcollat' => 'utf8_general_ci',
-			'swap_pre' => '',
-			'encrypt' => FALSE,
-			'compress' => FALSE,
-			'stricton' => FALSE,
-			'failover' => array(),
-			'save_queries' => TRUE
-		);
 
 		private $db;
 		private $result;
