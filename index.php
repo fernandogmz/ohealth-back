@@ -66,6 +66,8 @@
 			return array_values($doctores);
 		}
 	
+	require('test.php');
+	
 	die();
 	require_once('connection.php');
 	
