@@ -9,7 +9,17 @@
 </body>
 </html>
 <?php
-
+	private $cleardb_server   = getenv("DB_HOST");
+	private $cleardb_username = getenv("DB_USERNAME");
+	private $cleardb_password = getenv("DB_PASSWORD");
+	private $cleardb_db       = getenv("DB_NAME");
+	
+	print_r($cleardb_server);
+	print_r($cleardb_username);
+	print_r($cleardb_password);
+	print_r($cleardb_db);
+	
+	die();
 	require_once('connection.php');
 	
 	$db = new MODEL();
