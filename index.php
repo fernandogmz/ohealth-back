@@ -41,11 +41,24 @@
 						$result['data']=$data;
 					}
 					break;
+				case 'newDoctor':
+					$data = (isset($_POST['data'])?$_POST['data']:null);
+					if($data && $db->addDoctor($data)){
+						$result['status']='ok';
+						$result['message']='Doctor agregado exitosamente';
+					}else{
+						$result['status']='error';
+						$result['message']='Error con el registro';
+					}
+					unset($result['data']);
+					break;
+				
 				
 			}
 		}else{
 			$result['status']='error';
 			$result['message']='No se puede conectar con la base de datos';
+			unset($result['data']);
 		}
 	}else{
 		$result['status']='error';
