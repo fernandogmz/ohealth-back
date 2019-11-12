@@ -3,12 +3,11 @@
 	class MODEL{
 
 	//Get Heroku ClearDB connection information
-		//private $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-		private $cleardb_server   = getenv("DB_HOST");
-		private $cleardb_username = getenv("DB_USERNAME");
-		private $cleardb_password = getenv("DB_PASSWORD");
-		private $cleardb_db       = getenv("DB_NAME");
-
+		private $cleardb_url;
+		private $cleardb_server;
+		private $cleardb_username;
+		private $cleardb_password;
+		private $cleardb_db;
 
 		private $db;
 		private $result;
@@ -16,6 +15,12 @@
 
 
 		public function connect(){
+			$this->cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+			$this->cleardb_server   = $cleardb_url["host"];
+			$this->cleardb_username = $cleardb_url["user"];
+			$this->cleardb_password = $cleardb_url["pass"];
+			$this->cleardb_db       = substr($cleardb_url["path"],1);
+
 			$this->db = new mysqli(
 				$this->cleardb_server,
 				$this->cleardb_username,
