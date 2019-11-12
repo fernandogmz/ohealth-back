@@ -12,7 +12,6 @@
 
 
 	require_once('connection.php');
-	header("Access-Control-Allow-Origin: *");
 
 	$result = array(
 		'status'	=>	'ok',
