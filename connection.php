@@ -42,6 +42,8 @@
 			$doctores=[];
 
 			$this->result = $this->db->query($query);
+
+			var_dump($this->result);
 			
 			if($this->result){
 				while($row = $this->result->fetch_assoc()){
