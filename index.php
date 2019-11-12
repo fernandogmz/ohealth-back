@@ -52,6 +52,17 @@
 					}
 					unset($result['data']);
 					break;
+				case 'newPaciente':
+					$data = (isset($_POST['data'])?$_POST['data']:null);
+					if($data && $db->addPaciente($data)){
+						$result['status']='ok';
+						$result['message']='Paciente agregado exitosamente';
+					}else{
+						$result['status']='error';
+						$result['message']='Error con el registro';
+					}
+					unset($result['data']);
+					break;
 				
 				
 			}

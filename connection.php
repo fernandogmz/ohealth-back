@@ -101,6 +101,24 @@
 
 		}
 
+		public function addPaciente($data){
+			$data = json_decode($data);
+			$query="INSERT INTO paciente VALUES (?,?,?,?,?,?)";
+			$stmt=$this->db->prepare($query);
+			$stmt->bind_param("ssssss",$codigo,$nombre,$apellido,$dui,$telefono,$movil);
+
+			$codigo=$data->codigo;
+			$nombre=$data->nombre;
+			$apellido=$data->apellido;
+			$dui=$data->dui;
+			$telefono=$data->telefono;
+			$movil=$data->movil;
+
+			$stmt->execute();
+			return ($stmt->affected_rows>0?true:false);
+
+		}
+
 		public function addDocEsp($data){
 
 		}
