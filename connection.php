@@ -83,6 +83,20 @@
 			return $pacientes;
 		}
 
+		public function citasA(){
+			$query="SELECT * FROM cita";
+			$this->result = $this->db->query($query);
+			
+			$citas = [];
+
+			if($this->result){
+				while($row = $this->result->fetch_assoc()){
+					$citas[]=$row;
+				}
+			}
+			return $citas;
+		}
+
 		public function addDoctor($data){
 			$data = json_decode($data);
 			$query="INSERT INTO doctor VALUES (?,?,?,?,?,?)";

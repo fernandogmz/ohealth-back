@@ -33,12 +33,21 @@
 						$result['data']=$data;
 					}
 					break;
+
 				case 'getPacientes':
 				$data = $db->pacientes();
 					if($data){
 						$result['data']=$data;
 					}
 					break;
+
+				case 'getCitasAll':
+				$data = $db->citasA();
+					if($data){
+						$result['data']=$data;
+					}
+					break;
+
 				case 'newDoctor':
 					$data = (isset($_POST['data'])?$_POST['data']:null);
 					if($data && $db->addDoctor($data)){
