@@ -69,6 +69,67 @@
 			return array_values($doctores);
 		}
 
+		public function doctor($data){
+
+			$data = json_decode($data);
+			$codDoctor = ($data->codDoctor);
+			
+			$query="SELECT doctor.*, doctorxespecialidad.cod_especialidad, especialidad.nombre AS nombre_esp FROM doctor
+			LEFT JOIN doctorxespecialidad ON doctorxespecialidad.cod_doctor=doctor.codigo
+			LEFT JOIN especialidad ON especialidad.codigo = doctorxespecialidad.cod_especialidad
+			WHERE doctor.codigo='".$codDoctor."'";
+
+			$doctores_keys=[];
+			$doctores=[];
+
+			$this->result = $this->db->query($query);
+			
+			if($this->result){
+				while($row = $this->result->fetch_assoc()){
+					$cod = $row['codigo'];
+					if(!array_key_exists($cod,$doctores)){ //Agregar
+						$doctores[$cod]=[
+							'codigo'=>$row['codigo'],
+							'nombre'=>$row['nombre'],
+							'apellidos'=>$row['apellidos'],
+							'telefono'=>$row['telefono'],
+							'correo'=>$row['correo'],
+							'jvpm'=>$row['jvpm'],
+							'especialidades'=>($row['cod_especialidad']?[$row['nombre_esp']]:array())
+						];
+					}else{
+						
+						if($row['cod_especialidad']){
+							array_push($doctores[$cod]['especialidades'],$row['nombre_esp']);
+						}
+					}
+					
+				}
+			}
+
+			return array_values($doctores);
+		}
+
+		public function paciente($data){
+
+			$data = json_decode($data);
+			$codPaciente = ($data->codPaciente);
+			
+			$query="SELECT * FROM paciente WHERE codigo='".$codPaciente."'";
+
+			$this->result = $this->db->query($query);
+			
+			$pacientes = [];
+
+			if($this->result){
+				while($row = $this->result->fetch_assoc()){
+					$pacientes[]=$row;
+				}
+			}
+			return $pacientes;
+
+		}
+
 		public function pacientes(){
 			$query="SELECT * FROM paciente";
 			$this->result = $this->db->query($query);

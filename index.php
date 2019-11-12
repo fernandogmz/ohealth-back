@@ -42,6 +42,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 					}
 					break;
 
+				case 'getDoctor':
+					$data = (isset($_POST['data'])?$_POST['data']:null);
+					if($data)
+					{
+						$info=$db->doctor($data);
+						$result['message']='ok';
+						$result['data']=$info;
+					}else{
+						$result['status']='error';
+						$result['message']='Error con el registro';
+						unset($result['data']);
+					}
+					break;
+				
+				case 'getPaciente':
+					$data = (isset($_POST['data'])?$_POST['data']:null);
+					if($data)
+					{
+						$info=$db->paciente($data);
+						$result['message']='ok';
+						$result['data']=$info;
+					}else{
+						$result['status']='error';
+						$result['message']='Error con el registro';
+						unset($result['data']);
+					}
+					break;
+
 				case 'getPacientes':
 				$data = $db->pacientes();
 					if($data){
