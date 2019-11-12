@@ -19,6 +19,8 @@
 
 	print_r(json_encode($db->doctores()));
 
+	print_r($db);
+
 	/**
 	* OBTENIENDO STRING JSON
 	$data='{"codigo":"XTEST","nombre":"Edmund","apellidos":"McKenzie","telefono":"860-326-5800","correo":"(910)440-1686","jvpm":"80800659"}';
