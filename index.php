@@ -34,6 +34,13 @@
 						$result['data']=$data;
 					}
 					break;
+				case 'getPacientes':
+				$data = $db->pacientes();
+					if($data){
+						$result['status']='ok';
+						$result['data']=$data;
+					}
+					break;
 				
 			}
 		}else{
