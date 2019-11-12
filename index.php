@@ -11,34 +11,41 @@
 <?php
 	
 	require_once('connection.php');
-	
-	$db = new MODEL();
-	$db->connect();
 
-	if(!$db->isActive()) die('Conexión fallida');
-
-	print_r(json_encode($db->doctores()));
-
-	/**
-	* OBTENIENDO STRING JSON
-	$data='{"codigo":"XTEST","nombre":"Edmund","apellidos":"McKenzie","telefono":"860-326-5800","correo":"(910)440-1686","jvpm":"80800659"}';
-
-	print_r($db->addDoctor($data));
-	*/
-	
-	/**
-	* OBTENIENDO PARAMETROS POR POST
-	$data = array(
-		"codigo"=>"XTEST",
-		"nombre"=>"Edmund",
-		"apellidos"=>"McKenzie",
-		"telefono"=>"860-326-5800",
-		"correo"=>"(910)440-1686",
-		"jvpm"=>"80800659"
+	$result = array(
+		'status'	=>	'',
+		'message'	=>	'',
+		'data'		=>	''
 	);
 
-	print_r($db->addDoctor(json_encode($data));
-	*/
+	if(isset($_POST['oh-action'])){
 
+		$db = new MODEL();
+		$db->connect();
+
+		if($db->isActive()) {
+			$action = $_POST['oh-action'];
+
+			switch($action){
+				case 'getDoctores':
+					$data = $db->doctores();
+					if($data){
+						$result['status']='ok';
+						$result['data']=$data;
+					}
+					break;
+				
+			}
+		}else{
+			$result['status']='error';
+			$result['message']='No se puede conectar con la base de datos';
+		}
+	}else{
+		$result['status']='error';
+		$result['message']='ACCION NO PERMITIDA';
+		unset($result['data']);
+	}
+	
+	print(json_encode($result));
 
 ?>
