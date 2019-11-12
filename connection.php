@@ -16,10 +16,10 @@
 
 		public function connect(){
 			$this->cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-			$this->cleardb_server   = $cleardb_url["host"];
-			$this->cleardb_username = $cleardb_url["user"];
-			$this->cleardb_password = $cleardb_url["pass"];
-			$this->cleardb_db       = substr($cleardb_url["path"],1);
+			$this->cleardb_server   = $this->cleardb_url["host"];
+			$this->cleardb_username = $this->cleardb_url["user"];
+			$this->cleardb_password = $this->cleardb_url["pass"];
+			$this->cleardb_db       = substr($this->cleardb_url["path"],1);
 
 			$this->db = new mysqli(
 				$this->cleardb_server,
