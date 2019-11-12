@@ -152,9 +152,11 @@
 
 			if($this->result){
 				while($row = $this->result->fetch_assoc()){
+					$row['estado']=($row['estado']==1?'ACTIVA':'INACTIVA');
 					$citas[]=$row;
 				}
 			}
+			
 			return $citas;
 		}
 
