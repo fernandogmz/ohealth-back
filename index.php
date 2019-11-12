@@ -13,7 +13,7 @@
 	require_once('connection.php');
 
 	$result = array(
-		'status'	=>	'',
+		'status'	=>	'ok',
 		'message'	=>	'',
 		'data'		=>	''
 	);
@@ -30,21 +30,18 @@
 				case 'getDoctores':
 					$data = $db->doctores();
 					if($data){
-						$result['status']='ok';
 						$result['data']=$data;
 					}
 					break;
 				case 'getPacientes':
 				$data = $db->pacientes();
 					if($data){
-						$result['status']='ok';
 						$result['data']=$data;
 					}
 					break;
 				case 'newDoctor':
 					$data = (isset($_POST['data'])?$_POST['data']:null);
 					if($data && $db->addDoctor($data)){
-						$result['status']='ok';
 						$result['message']='Doctor agregado exitosamente';
 					}else{
 						$result['status']='error';
@@ -55,7 +52,6 @@
 				case 'newPaciente':
 					$data = (isset($_POST['data'])?$_POST['data']:null);
 					if($data && $db->addPaciente($data)){
-						$result['status']='ok';
 						$result['message']='Paciente agregado exitosamente';
 					}else{
 						$result['status']='error';

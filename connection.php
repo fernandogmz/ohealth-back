@@ -119,9 +119,7 @@
 
 		}
 
-		public function addDocEsp($data){
-
-		}
+		
 
 	}
 	
